@@ -1,11 +1,17 @@
 "use client";
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Block6Component } from '../Blocks/Block6Component';
 import { ServicesPage } from './ServicesPage';
 import { ConditionsPage } from './ConditionsPage';
 import { Block3Component } from '../Blocks/Block3Component';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 export const LandingPage = () => {
+
+    useEffect(() => {
+        sendGTMEvent({ event: 'pageview', page: 'landing' })
+    }, [])
+    
     const block1Ref = useRef<HTMLDivElement | null>(null);
     
     const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
